@@ -16,7 +16,7 @@ body {
 }
 
 .navbar {
-  position: realtive;
+  position: relative;
   padding: 0.5rem;
   /* #1 */
   background-color: rgb(101,18,95,0.5);
