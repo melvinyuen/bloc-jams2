@@ -30,6 +30,22 @@ var albumMarconi = {
     ]
 };
 
+// Melvin Custom Example Album
+var albumMelvin = {
+    title: 'The Repeat',
+    artist: 'Melvin Yuen',
+    label: 'Red Rhino',
+    year: '2017',
+    albumArtUrl: 'assets/images/album_covers/19.png',
+    songs: [
+        { title: 'Did you Understand js?', duration: '1:11' },
+        { title: 'Starting to Come Back', duration: '2:22' },
+        { title: 'Pay Attention', duration: '3:33'},
+        { title: 'Can you see me now?', duration: '4:44' },
+        { title: 'Wrong phone syntax', duration: '5:55'}
+    ]
+};
+
 var createSongRow = function(songNumber, songName, songLength) {
     var template =
        '<tr class="album-view-song-item">'
@@ -42,14 +58,14 @@ var createSongRow = function(songNumber, songName, songLength) {
     return template;
 };
 
+var albumTitle = document.getElementsByClassName('album-view-title')[0];
+var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+var albumImage = document.getElementsByClassName('album-cover-art')[0];
+var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
+
 var setCurrentAlbum = function(album) {
     // #1
-    var albumTitle = document.getElementsByClassName('album-view-title')[0];
-    var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-    var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-    var albumImage = document.getElementsByClassName('album-cover-art')[0];
-    var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
-
     // #2
     albumTitle.firstChild.nodeValue = album.title;
     albumArtist.firstChild.nodeValue = album.artist;
@@ -66,5 +82,15 @@ var setCurrentAlbum = function(album) {
 };
 
 window.onload = function() {
-    setCurrentAlbum(albumPicasso);
+  setCurrentAlbum(albumPicasso);
+
+  var albums = [albumPicasso, albumMarconi, albumMelvin];
+  var index = 1;
+  albumImage.addEventListener('click', function(event) { //adding event listener to set current album
+    setCurrentAlbum(albums[index]);
+    index++;
+    if (index == albums.length) {
+    index = 0;
+    }
+  });
 };
