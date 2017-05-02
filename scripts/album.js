@@ -89,6 +89,7 @@ var albumMelvin = {
 };
 
 var createSongRow = function(songNumber, songName, songLength) {
+  // Creates a song row without hardcoding the HTML into album.html
   var template =
     '<tr class="album-view-song-item">' +
     '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>' +
@@ -172,10 +173,16 @@ window.onload = function() {
 var findParentByClassName = function(element, targetClass) {
   if (element) {
     var currentParent = element.parentElement;
-    while (currentParent.className !== targetClass && currentParent.className !== null) {
-      currentParent = currentParent.parentElement;
+    if (currentParent.className !== null) { //if parentElemnt exists then continue
+      while (currentParent.className !== targetClass && currentParent.className !== null) {
+        currentParent = currentParent.parentElement;
+        console.log('No parent found with that class name');
+      }
+      return currentParent;
+
+    } else {
+      console.log('No parent found'); // else console.log a string that says "No parent found"
     }
-    return currentParent;
   }
 };
 
