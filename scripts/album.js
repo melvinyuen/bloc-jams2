@@ -169,19 +169,21 @@ window.onload = function() {
   }
 };
 
-//First attempt to get Pause button to work
 var findParentByClassName = function(element, targetClass) {
   if (element) {
     var currentParent = element.parentElement;
-    if (currentParent.className !== null) { //if parentElemnt exists then continue
+    if (currentParent) { //if parentElement is exists (not false) then continue
       while (currentParent.className !== targetClass && currentParent.className !== null) {
         currentParent = currentParent.parentElement;
-        console.log('No parent found with that class name');
       }
-      return currentParent;
+      if (currentParent.className === targetClass) {
+        return currentParent;
 
+      } else { //  if currentParent.className = null { console.log('No parent found with that class name');}
+        console.log('No parent found with that class name');
     } else {
       console.log('No parent found'); // else console.log a string that says "No parent found"
+      }
     }
   }
 };
