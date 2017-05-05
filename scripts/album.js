@@ -170,21 +170,19 @@ window.onload = function() {
 };
 
 var findParentByClassName = function(element, targetClass) {
-  //if (element) {
-    var currentParent = element.parentElement; //new variable to track current parent
-    if (currentParent) { //if parentElement exists (not false) then continue
-      while (currentParent.className !== targetClass && currentParent.className !== null) {
-        currentParent = currentParent.parentElement;
-      }
-      if (currentParent.className === targetClass) {
-        return currentParent;
-      } else { //  if currentParent.className = null { console.log('No parent found with that class name');}
-        console.log('No parent found with that class name');
-      }
-    } else {
-      console.log('No parent found'); // else parentElement does not exist "No parent found"
+  var currentParent = element.parentElement; //new variable to track current parent
+  if (currentParent) { //if parentElement exists (not false) then continue
+    while (currentParent.className !== targetClass && currentParent.className !== null && currentParent.parentElement !== null) {
+      currentParent = currentParent.parentElement;
     }
-  //}
+    if (currentParent) {
+      return currentParent;
+    } else { //  if currentParent.className = null { console.log('No parent found with that class name');}
+      console.log('No parent found with that class name');
+    }
+  } else {
+    console.log('No parent found'); // else parentElement does not exist "No parent found"
+  }
 };
 
 var getSongItem = function(element) {
