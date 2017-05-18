@@ -29,7 +29,7 @@
 
 .player-bar .control-group {
   display: table-cell;
-  vertical-alight: middle;
+  vertical-align: middle;
 }
 
 .player-bar .main-controls {
