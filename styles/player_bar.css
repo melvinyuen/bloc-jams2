@@ -59,7 +59,7 @@
   text-align: center;
   font-size: 0.75rem;
   margin: 0;
-  position absolute;
+  position: absolute;
   width: 100%;
   font-weight: 300;
 }
@@ -95,7 +95,7 @@
 
 .seek-bar {
   height: 0.25rem;
-  background-color: rgba(255, 255, 255 0.3);
+  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 2px;
   position: relative;
   cursor: pointer;
@@ -134,7 +134,7 @@
 
 .player-bar .volume {
   width: 25%;
-  text-alight: right;
+  text-align: right;
 }
 
 .player-bar .volume .icon {
