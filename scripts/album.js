@@ -106,6 +106,7 @@ var playerBarPauseButton = '<span class="ion-pause"></span>';
 var currentAlbum = null; // Creating additional variable to track song properly for Next and Previous functions
 var currentlyPlayingSongNumber = null;
 var currentSongFromAlbum = null;
+
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
 
