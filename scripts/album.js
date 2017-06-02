@@ -36,7 +36,7 @@ var createSongRow = function(songNumber, songName, songLength) {
   var onHover = function(event) {
     // Bloc's sample answer onhover jquery
     var songNumberCell = $(this).find('.song-item-number');
-    var songNumber = parseInt($(this).attr('data-song-number'));
+    var songNumber = parseInt(songNumberCell.attr('data-song-number'));
 
     if (songNumber !== currentlyPlayingSongNumber) {
       songNumberCell.html(playButtonTemplate);
@@ -46,7 +46,7 @@ var createSongRow = function(songNumber, songName, songLength) {
   var offHover = function(event) {
     // Bloc's sample answer offhover jquery
     var songNumberCell = $(this).find('.song-item-number');
-    var songNumber = parseInt($(this).attr('data-song-number'));
+    var songNumber = parseInt(songNumberCell.attr('data-song-number'));
 
     if (songNumber !== currentlyPlayingSongNumber) {
       songNumberCell.html(songNumber);
