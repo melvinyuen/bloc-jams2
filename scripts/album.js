@@ -46,19 +46,26 @@ var createSongRow = function(songNumber, songName, songLength) {
       // Switch from Play -> Pause button to indicate new song is playing.
       $(this).html(pauseButtonTemplate);
       setSong(songNumber);
+			currentSoundFile.play()
       updatePlayerBarSong();
     } else if (currentlyPlayingSongNumber === songNumber) {
       // Switch from Pause -> Play button to pause currently playing song.
-      $(this).html(playButtonTemplate);
-      $('.main-controls .play-pause').html(playerBarPlayButton);
-      setSong(null);
+      if (currentSoundFile.isPaused()) {
+				$(this).html(pauseButtonTemplate);
+				$('.main-controls .play-pause').html(playerBarPauseButton);
+				currentSoundFile.play();
+			} else {
+				$(this).html(playButtonTemplate);
+				$('.main-controls .play-pause').html(playerBarPlayButton);
+				currentSoundFile.pause();
+			}
     }
   };
 
   var onHover = function(event) {
     // Bloc's sample answer onhover jquery
     var songNumberCell = $(this).find('.song-item-number');
-    var songNumber = parseInt($(this).attr('data-song-number'));
+    var songNumber = parseInt(songNumberCell.attr('data-song-number'));
 
     if (songNumber !== currentlyPlayingSongNumber) {
       songNumberCell.html(playButtonTemplate);
@@ -68,7 +75,7 @@ var createSongRow = function(songNumber, songName, songLength) {
   var offHover = function(event) {
     // Bloc's sample answer offhover jquery
     var songNumberCell = $(this).find('.song-item-number');
-    var songNumber = parseInt($(this).attr('data-song-number'));
+    var songNumber = parseInt(songNumberCell.attr('data-song-number'));
 
     if (songNumber !== currentlyPlayingSongNumber) {
       songNumberCell.html(songNumber);
