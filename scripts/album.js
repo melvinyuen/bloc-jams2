@@ -1,6 +1,21 @@
 var setSong = function(songNumber) {
+	if (currentSoundFile) {
+		currentSoundFile.stop();
+	}
 	currentlyPlayingSongNumber = parseInt(songNumber);
 	currentSongFromAlbum = currentAlbum.songs[songNumber - 1];
+	currentSoundFile = new buzz.sound(currentSongFromAlbum.audioUrl, {
+		formats: ['mp3'],
+		preload: true
+	});
+
+	setVolume(currentVolume);
+};
+
+var setVolume = function(volume) {
+	if (currentSoundFile) {
+		currentSoundFile.setVolume(volume);
+	}
 };
 
 var getSongNumberCell = function(number) {
@@ -43,7 +58,7 @@ var createSongRow = function(songNumber, songName, songLength) {
   var onHover = function(event) {
     // Bloc's sample answer onhover jquery
     var songNumberCell = $(this).find('.song-item-number');
-    var songNumber = parseInt(songNumberCell.attr('data-song-number'));
+    var songNumber = parseInt($(this).attr('data-song-number'));
 
     if (songNumber !== currentlyPlayingSongNumber) {
       songNumberCell.html(playButtonTemplate);
@@ -53,7 +68,7 @@ var createSongRow = function(songNumber, songName, songLength) {
   var offHover = function(event) {
     // Bloc's sample answer offhover jquery
     var songNumberCell = $(this).find('.song-item-number');
-    var songNumber = parseInt(songNumberCell.attr('data-song-number'));
+    var songNumber = parseInt($(this).attr('data-song-number'));
 
     if (songNumber !== currentlyPlayingSongNumber) {
       songNumberCell.html(songNumber);
@@ -113,6 +128,8 @@ var playerBarPauseButton = '<span class="ion-pause"></span>';
 var currentAlbum = null; // Creating additional variable to track song properly for Next and Previous functions
 var currentlyPlayingSongNumber = null;
 var currentSongFromAlbum = null;
+var currentSoundFile = null;
+var currentVolume = 80;
 
 var $previousButton = $('.main-controls .previous');
 var $nextButton = $('.main-controls .next');
@@ -130,7 +147,7 @@ var nextSong = function() {
 
   // Set a new current song
   setSong(currentSongIndex + 1);
-
+	currentSoundFile.play();
   // Update the Player Bar Information
   updatePlayerBarSong();
 
@@ -155,7 +172,7 @@ var previousSong = function() {
 
   // Set a new current song
   setSong(currentSongIndex + 1);
-
+	currentSoundFile.play();
 
   // Update the Player Bar Information
   updatePlayerBarSong();
