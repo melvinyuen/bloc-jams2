@@ -54,9 +54,9 @@ var createSongRow = function(songNumber, songName, songLength) {
       setSong(songNumber);
 			currentSoundFile.play()
 			updateSeekBarWhileSongPlays();//; MY-2017-Jun-21 do I need this semicolon?
-			currentSongFromAlbum = currentAlbum.songs[songNumber -1];
+			currentSongFromAlbum = currentAlbum.songs[songNumber-1];
 
-			var $volumeFill = $('.voume .fill');
+			var $volumeFill = $('.volume .fill');
 			var $volumeThumb = $('.volume .thumb');
 			$volumeFill.width(currentVolume + '%');
 			$volumeThumb.css({left: currentVolume + '%'});
