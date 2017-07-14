@@ -33,12 +33,12 @@ var albumPicasso = {
     {
       title: 'Feed Me - Silicon Lube',
       duration: 301.01,
-      audioURL: 'assets/music/feedMe'
+      audioUrl: 'assets/music/feedMe'
     },
     {
       title: 'Empire Of The Sun - Walking On A Dream',
       duration: 200.01,
-      audioURL: 'assets/music/empireSun'
+      audioUrl: 'assets/music/empireSun'
     }
   ]
 };
