@@ -136,7 +136,7 @@ var updateSeekBarWhileSongPlays = function() {
 			var $seekBar = $('.seek-control .seekBar');
 
 			updateSeekPercentage($seekBar, seekBarFillRatio);
-			//console.log(currentTime);
+			//console.log(currentTime, filterTimeCode(currentTime));
 			setCurrentTimeInPlayerBar(filterTimeCode(currentTime));
 		});
 	}
@@ -297,25 +297,35 @@ var setCurrentTimeInPlayerBar = function(currentTime) {
 };
 
 var setTotalTimeInPlayerBar = function(totalTime) {
-	var $totalTimeELement = $('.total-time');
+	var $totalTimeELement = $('.seek-control .total-time');
 	$totalTimeELement.text(totalTime);
 };
 
 var filterTimeCode = function(timeInSeconds) {
-	var seconds = Number.parseFloat(timeInSeconds);
-	var wholeSeconds = Math.floor(seconds);
-	var minutes = Math.floor(wholeSeconds / 60);
+	var seconds = Number.parseFloat(timeInSeconds); //Total time in seconds
+	var wholeSeconds = Math.floor(seconds);					//Get the number of whole seconds to prepare a calc for minutes
+	var minutes = Math.floor(wholeSeconds / 60);		//store a value for minutes
 	console.log(timeInSeconds, seconds, wholeSeconds, minutes);
 
+	/*
+	variable output should first be a string that consists of:
+		1. variable minutes + ':' + (remainingSeconds)
+		2. logic for (if remainingSeconds < 10) to display an extra 0 in front of remainingSeconds. ex: upon first click should be 0:01
+		3. once first minute elapses should display "1 + the string '':0'+ "
 
+		Question 1: does minutes turn to 0 when seconds is less than 60?
+		Question 2: Why is the HTML not being replaced for time elapsed?
+	*/
 	var remainingSeconds = wholeSeconds % 60;
-	var output = minutes + ':';
+	var output = minutes + ':';  //#1 but did I get the logic for #2
 
-	if (remainingSeconds < 10) {
+
+	if (remainingSeconds < 10) { //add line break, then console.log to see what it's doing
 	output += '0';
 	}
+	console.log(remainingSeconds, output);
 
-	output += remainingSeconds;
+	output += remainingSeconds; //do I need to parseInt for it to text to be dynamically changed correctly?
 	//console.log(seconds,wholeSeconds,minutes,remainingSeconds,output);
 	return output;
 };
